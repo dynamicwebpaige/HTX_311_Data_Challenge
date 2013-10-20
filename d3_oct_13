@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <script src="http://code.highcharts.com/highcharts.js"></script>
+      <div id="container" style="width: 500px; height: 500px; margin: 0 auto; border:1px solid black;"></div>
+   </head>
+   <body>
+      <script type="text/javascript">
+
+        var chart;
+        $(document).ready(function() {
+    
+        /* PIE CHART THEME */
+        Highcharts.theme = {
+        /* LINE/BAR/COLUMN/SLICE COLORS - only used for slices for Plex, if we add multiple data sets in future releases, these colors will work with the rendering of other sets */
+        colors: ['#395C9B', '#923532', '#7B972E', '#6A538D', '#3B83A1', '#CB7221', '#F2E200'],
+    
+        /* CHART TITLE */
+        title: {
+        style: {
+        color: '#000',
+         font: 'bold 16px "Lucida Grande", Helvetica, Arial, sans-serif'
+      }
+   },
+
+   /* CHART SUBTITLE */
+   subtitle: {
+      style: {
+         color: '#666666',
+         font: 'bold 12px "Lucida Grande", Helvetica, Arial, sans-serif'
+      }
+   },
+    
+   /* CHART X-AXIS */
+   xAxis: {
+      lineColor: '#000',
+      tickColor: '#000',
+      labels: {
+         style: {
+            color: '#000',
+            font: '11px "Lucida Grande", Helvetica, Arial, sans-serif'
+         }
+      },
+      title: {
+         style: {
+            color: '#333',
+            font: 'bold 12px "Lucida Grande", Helvetica, Arial, sans-serif'
+         }
+      }
+   },
+    
+   /* CHART Y-AXIS */
+   yAxis: {
+      minorTickInterval: 'false', /* OPTIONAL PARAMETER - SHOWS HORIZONTAL LINES in between tick values */
+      lineColor: '#000',
+      lineWidth: 1,
+      tickWidth: 1,
+      tickColor: '#000',
+      labels: {
+         style: {
+            color: '#000',
+            font: '11px "Lucida Grande", Helvetica, Arial, sans-serif'
+         }
+      },
+      title: {
+         style: {
+            color: '#333',
+            font: 'bold 12px "Lucida Grande", Helvetica, Arial, sans-serif'
+         }
+      }
+   },
+    
+   /* LINE CHART COLORS */
+   plotOptions: {
+       line: {
+           lineWidth: 3,
+           shadow: false,
+           marker: {
+                fillColor: '#fff', /* LINE POINT COLOR */
+                lineWidth: 2,
+                radius: 4,
+                symbol: 'circle', /* "circle", "square", "diamond", "triangle" and "triangle-down" */
+                lineColor: null // inherit from above defined colors
+           }
+       },
+       column: {
+          cursor: 'pointer',
+           borderColor: '#333',
+           borderWidth: 1,
+           shadow: false
+       },
+       bar: {
+          cursor: 'pointer',
+          borderColor: '#333',
+          borderWidth: 1,
+          shadow: false
+       },
+       pie: {
+          cursor: 'pointer',
+          borderColor: '#666',
+          borderWidth: 1,
+          shadow: false
+       }
+   }    
+}; 
+    
+// Apply the theme
+var highchartsOptions = Highcharts.setOptions(Highcharts.theme);        
+    
+    chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'container',
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: '3-1-1 data percentages, via district'
+        },
+        subtitle: {
+            text: 'Data obtained via http://data.codeforhouston.com'
+        },  
+        series: [{
+            type: 'pie',
+            name: 'Percentage',
+            data: [
+                ['A',   7.4],
+                ['B',   10.0],
+                {
+                    name: 'C',
+                    y: 16.0,
+                    sliced: true,
+                    selected: true
+                },
+                ['D',   13.2],
+                ['E',    4.5],
+                ['F',    5.6],
+                ['G',   8.3],          
+                ['H',   9.8],
+                ['I',   10.0],
+                ['J',   4.1],
+                ['K',     10.1],
+                ['district unknown', 0.039] 
+                ]
+                }]
+        });
+});
+
+</script>
+</body>
+</html>

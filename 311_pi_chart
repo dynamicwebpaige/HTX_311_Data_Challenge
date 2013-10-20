@@ -1,0 +1,28 @@
+#! /usr/bin/python
+
+from pylab import *
+import collections
+import re
+
+words = re.findall(r'\w+', open('311_districts.txt').read().lower())
+tally = collections.Counter(words).most_common(len(collections.Counter(words)))
+
+print len(collections.Counter(words))
+
+figure(1, figsize=(8,8))
+ax = axes([0.1, 0.1, 0.8, 0.8])
+
+labels = []
+fracs = []
+
+for i in tally:
+   labels.append(i[0])
+   fracs.append(i[1])
+
+explode = (0, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+pie(fracs, explode=explode, labels=labels, colors = ['b', 'y', 'g', 'b', 'w', 'r', 'y', 'g', 'b', 'w', 'r', 'y', 'g'], autopct = '%1.1f%%', shadow=True)
+
+title('311 data percentages, via district', bbox={'facecolor':'0.8', 'pad':8})
+
+show()
